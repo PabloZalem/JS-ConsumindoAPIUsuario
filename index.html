@@ -36,6 +36,30 @@
         <button type="submit">Criar usuário (POST)</button>
     </form>
 
+    <form id="updateForm">
+        <h3>Atualizar usuário (PUT)</h3>
+    
+        <label>
+            ID do usuário:
+            <input type="number" id="updateUserId" placeholder="ID" required />
+        </label>
+    
+        <label>
+            Novo usuário (opcional):
+            <input type="text" id="updateUsuario" placeholder="usuario@email.com" />
+        </label>
+    
+        <label>
+            Nova senha (opcional):
+            <input type="password" id="updateSenha" placeholder="********" />
+        </label>
+    
+        <button type="button" id="btnUpdateUser">Atualizar usuário</button>
+    </form>
+
+<pre id="updateOutput"></pre>
+
+
     <!-- Saída dos dados -->
     <h2>Todos os usuários:</h2>
     <pre id="output">Clique em "Carregar todos os usuários" para listar.</pre>

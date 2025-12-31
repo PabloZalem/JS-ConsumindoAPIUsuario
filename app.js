@@ -8,6 +8,13 @@ const $form = document.getElementById("userForm");
 const $userIdInput = document.getElementById("userIdInput");
 const $deleteIdInput = document.getElementById("deleteIdOutput");
 const $btnDeleteById = document.getElementById("btnDeleteById");
+const $updateForm = document.getElementById("updateForm");
+const $btnUpdateUser = document.getElementById("btnUpdateUser");
+const $updateUserId = document.getElementById("updateUserId");
+const $updateUsuario = document.getElementById("updateUsuario");
+const $updateSenha = document.getElementById("updateSenha");
+const $updateOutput = document.getElementById("updateOutput");
+
 
 function show(data) {
   $output.textContent = JSON.stringify(data, null, 2);
@@ -59,10 +66,19 @@ async function getUserById(id) {
 async function updateUserById(id, usuario) {
   const res = await fetch(`${API_URL}?id=${id}`, {
     method: "PUT",
-    headers: authHeaders(),
+    headers: {
+      "Content-Type": "application/json",
+      "Authorization":
+        "Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJwYWJsb0BlbWFpbC5jb20iLCJpYXQiOjE3NjcyMTE1NjMsImV4cCI6MTc2OTg0MTE4MH0.EJvUj2kgZnIVROHO3atF-WfW7G8A2KYPw-6pZNR8q1c",
+    },
     body: JSON.stringify(usuario),
   });
-  return res.json();
+
+  if (!res.ok) {
+    throw new Error(`Erro ${res.status}: ${res.statusText}`);
+  }
+
+  return true;
 }
 
 // DELETE by Id
@@ -79,6 +95,25 @@ async function deleteUserById(id) {
 }
 
 //Eventos
+$btnUpdateUser.addEventListener("click", async () => {
+  try {
+    const id = $updateUserId.value.trim();
+    if (!id) throw new Error("ID não informado");
+    const usuario = {};
+    if ($updateUsuario.value.trim())
+      usuario.usuario = $updateUsuario.value.trim();
+    if ($updateSenha.value.trim()) usuario.senha = $updateSenha.value.trim();
+    if (Object.keys(usuario).length === 0) {
+      throw new Error("Preencha ao menos 'usuario' ou 'senha' para atualizar");
+    }
+    const resposta = await updateUserById(id, usuario);
+    $updateOutput.textContent = "Usuário atualizado com sucesso";
+    $updateForm.reset();
+  } catch (error) {
+    $updateOutput.textContent = "Erro ao atualizar usuário: " + error.message;
+  }
+});
+
 $btnDeleteById.addEventListener("click", async () => {
   try {
     const id = $deleteIdInput.value; // <-- usar o campo certo
