@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Consumindo API com Fetch</title>
+    <link rel="stylesheet" href="style.css" />
+</head>
+
+<body>
+    <h1>API de Usuários</h1>
+
+    <!-- Botões de ação -->
+    <div class="actions">
+        <button id="btnLoadAll">Carregar todos os usuários (GET)</button>
+
+        <!-- Campo para digitar ID e botão para buscar -->
+        <input type="number" id="userIdInput" placeholder="ID do usuário" />
+        <button id="btnLoadById">Buscar usuário por ID (GET)</button>
+
+        <input type="number" id="deleteIdOutput" placeholder="ID do usuário" />
+        <button id="btnDeleteById" type="button">Deletar usuário por ID (DELETE)</button>
+    </div>
+
+    <!-- Formulário de criação -->
+    <form id="userForm">
+        <label>
+            Usuário:
+            <input type="text" name="nome" required />
+        </label>
+        <label>
+            Senha:
+            <input type="password" name="senha" required />
+        </label>
+        <button type="submit">Criar usuário (POST)</button>
+    </form>
+
+    <!-- Saída dos dados -->
+    <h2>Todos os usuários:</h2>
+    <pre id="output">Clique em "Carregar todos os usuários" para listar.</pre>
+
+    <h2>Usuário específico:</h2>
+    <pre id="outputUserSpecific">Digite um ID e clique em "Buscar usuário por ID".</pre>
+
+    <script src="app.js" defer></script>
+</body>
+
+</html>
