@@ -1,13 +1,23 @@
 const API_URL = "http://localhost:8080/usuarios";
 
 const $output = document.getElementById("output");
+
+// SAIDA DOS VALORES
 const $outputUserSpecific = document.getElementById("outputUserSpecific");
+
+// READ
 const $btnLoadAll = document.getElementById("btnLoadAll");
 const $btnLoadById = document.getElementById("btnLoadById");
-const $form = document.getElementById("userForm");
 const $userIdInput = document.getElementById("userIdInput");
+
+// CREATE
+const $form = document.getElementById("userForm");
+
+// DELETE
 const $deleteIdInput = document.getElementById("deleteIdOutput");
 const $btnDeleteById = document.getElementById("btnDeleteById");
+
+// UPDATE
 const $updateForm = document.getElementById("updateForm");
 const $btnUpdateUser = document.getElementById("btnUpdateUser");
 const $updateUserId = document.getElementById("updateUserId");
